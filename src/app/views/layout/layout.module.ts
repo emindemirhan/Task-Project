@@ -8,7 +8,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { ContentAnimateDirective } from '../../core/content-animate/content-animate.directive';
 
-import { NgbDropdownModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDropdownModule,
+  NgbCollapseModule,
+  NgbTooltipModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 import { FeatherIconModule } from '../../core/feather-icon/feather-icon.module';
 
@@ -17,9 +21,8 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
+  suppressScrollX: true,
 };
-
 
 @NgModule({
   declarations: [BaseComponent, NavbarComponent, ContentAnimateDirective],
@@ -30,13 +33,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgbDropdownModule,
     NgbCollapseModule,
     PerfectScrollbarModule,
-    FeatherIconModule
+    FeatherIconModule,
+    NgbTooltipModule,
   ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
-  ]
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
+  ],
 })
-export class LayoutModule { }
+export class LayoutModule {}

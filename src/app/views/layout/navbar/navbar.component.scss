@@ -1,0 +1,21 @@
+.logo-image {
+  scale: 1.5;
+}
+
+.nav-image {
+  scale: 1.2;
+}
+.nav-image:hover {
+  background-color: rgba(234, 234, 234, 0.183);
+  border-radius: 5px;
+  scale: 1.4;
+}
+
+.mobile-nav-image {
+  scale: 1.4;
+}
+.vertical-line {
+  border-left: 2px solid white;
+  height: 40px;
+  align-self: center;
+}

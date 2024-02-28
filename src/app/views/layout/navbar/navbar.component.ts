@@ -1,4 +1,10 @@
-import { Component, OnInit, Inject, Renderer2, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  Renderer2,
+  HostListener,
+} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -8,45 +14,57 @@ import { MenuItem } from './menu.model';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
   menuItems: MenuItem[] = [];
 
   /**
-  * Fixed header menu on scroll
-  */
-  @HostListener('window:scroll', ['$event']) getScrollHeight() {    
+   * Fixed header menu on scroll
+   */
+  @HostListener('window:scroll', ['$event']) getScrollHeight() {
     if (window.matchMedia('(min-width: 992px)').matches) {
-      let header: HTMLElement = document.querySelector('.horizontal-menu') as HTMLElement;
-      if(window.pageYOffset >= 60) {
-        header.parentElement!.classList.add('fixed-on-scroll')
+      let header: HTMLElement = document.querySelector(
+        '.horizontal-menu'
+      ) as HTMLElement;
+      if (window.pageYOffset >= 60) {
+        header.parentElement!.classList.add('fixed-on-scroll');
       } else {
-        header.parentElement!.classList.remove('fixed-on-scroll')
+        header.parentElement!.classList.remove('fixed-on-scroll');
       }
     }
   }
 
+  isMobileOrMediumScreen: boolean = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkScreenSize();
+  }
+
   constructor(
-    @Inject(DOCUMENT) private document: Document, 
+    @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.menuItems = MENU;
 
-    /**
-    * closing the header menu after route change in tablet/mobile devices
-    */
     if (window.matchMedia('(max-width: 991px)').matches) {
       this.router.events.forEach((event) => {
         if (event instanceof NavigationEnd) {
-          document.querySelector('.horizontal-menu .bottom-navbar')!.classList.remove('header-toggled');
+          document
+            .querySelector('.horizontal-menu .bottom-navbar')!
+            .classList.remove('header-toggled');
         }
       });
+      this.checkScreenSize();
     }
+  }
+
+  checkScreenSize() {
+    this.isMobileOrMediumScreen = window.innerWidth < 992;
   }
 
   /**
@@ -73,7 +91,8 @@ export class NavbarComponent implements OnInit {
    * Toggle header menu in tablet/mobile devices
    */
   toggleHeaderMenu() {
-    document.querySelector('.horizontal-menu .bottom-navbar')!.classList.toggle('header-toggled');
+    document
+      .querySelector('.horizontal-menu .bottom-navbar')!
+      .classList.toggle('header-toggled');
   }
-
 }
