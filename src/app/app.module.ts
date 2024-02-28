@@ -10,11 +10,10 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { AppComponent } from './app.component';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { SampleRedirectComponent } from './views/pages/sample-redirect/sample-redirect.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,10 +30,10 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
           xml: () => import('highlight.js/lib/languages/xml'),
           typescript: () => import('highlight.js/lib/languages/typescript'),
           scss: () => import('highlight.js/lib/languages/scss'),
-        }
-      }
-    }
+        },
+      },
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

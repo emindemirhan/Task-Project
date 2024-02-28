@@ -95,11 +95,7 @@
               />
               <span class="menu-title text-white">{{ item.label }}</span>
             </a>
-            <a
-              href="javascript:void(0);"
-              class="nav-link"
-              *ngIf="hasItems(item)"
-            >
+            <a [routerLink]="item.link" class="nav-link" *ngIf="hasItems(item)">
               <img
                 class="link-icon mobile-nav-image"
                 [src]="item.icon"
